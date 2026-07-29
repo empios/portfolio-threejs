@@ -20,6 +20,44 @@ npm run dev
 The build emits a relative `base`, so `dist/` serves from any shelf — GitHub
 Pages included.
 
+## Publishing
+
+`.github/workflows/deploy.yml` builds and deploys on every push to `main`.
+Two things must be done once, by hand:
+
+1. **Create the remote and push.** The repository is initialised locally with
+   `main` as its branch, but has no remote:
+
+```bash
+git remote add origin git@github.com:empios/personal-portfolio.git && git push -u origin main
+```
+
+2. **Turn Pages on.** In the repository's *Settings → Pages*, set **Source** to
+   **GitHub Actions**. Without this the workflow builds and then fails at the
+   deploy step.
+
+If the folio ends up anywhere other than
+`https://empios.github.io/personal-portfolio/`, change the four absolute URLs
+in the `<head>` of `index.html` — `og:image` in particular must be absolute or
+no platform will render the card.
+
+The sharing card is authored as `scripts/og.svg` and committed as
+`public/og.png`, because no platform renders an SVG in an `og:image`.
+Regenerate it after editing:
+
+```bash
+npm run og
+```
+
+## The CV is the same document
+
+There is no second source for a résumé. `src/styles/print.css` reflows the
+folio into two sheets of A4: the header, the orrery, the search drawer and the
+diagrams fall away; the sections reorder so contact details sit under the name;
+and the whole register of service prints, most recent first — the screen can
+show one chapter at a time, paper cannot. It prints in whichever language is on
+screen. Ctrl/Cmd-P to see it.
+
 ## How Pangolin is used
 
 Pangolin is a static HTML/CSS study, not a published package, so its two
