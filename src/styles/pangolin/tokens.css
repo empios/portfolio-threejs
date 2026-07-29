@@ -1,0 +1,417 @@
+/* =============================================================
+   PANGOLIN — DESIGN TOKENS
+   Ubuntu-inspired · Carbon-style · v0.1
+
+   How to read this file
+   ─────────────────────
+   • Layer 1 — RAW PALETTE & SCALES (--pg-{aubergine|orange|warm}-NN,
+     --pg-space-NN, --pg-fs-NN…).  These are the physical values.
+     They never appear in product CSS.  Theme changes leave them alone.
+
+   • Layer 2 — SEMANTIC TOKENS (--pg-bg, --pg-text-primary,
+     --pg-button-primary, …).  These name a role, not a color.
+     Components READ these.  When you switch [data-theme], only
+     these get remapped.
+
+   • Layer 3 — COMPONENT TOKENS (--pg-control, --pg-border-width…).
+     Sizing presets shared across primitives so density is one knob.
+
+   Naming follows IBM Carbon's token grammar; values follow Ubuntu's
+   palette and Yaru's softer shape language.
+   ============================================================= */
+
+
+/* =============================================================
+   1.  RAW PALETTE
+   The physical colors.  Reference NONE of these from product code.
+   Use the semantic tokens (Layer 2) instead — they're theme-aware.
+   ============================================================= */
+:root {
+
+  /* ── Aubergine ────────────────────────────────────────────────
+     Canonical's signature warm purple.  The system spine: chrome,
+     headers, primary buttons in Paper theme; entire backdrop in
+     Terminal theme.  -80 is the canonical brand color. */
+  --pg-aubergine-10:  #F5EAF1;  /* tinted surfaces, banners on light */
+  --pg-aubergine-20:  #E0BFD6;  /* selected rows on light */
+  --pg-aubergine-30:  #B98AAA;  /* disabled brand swatches */
+  --pg-aubergine-40:  #8E5279;  /* terminal-theme borders, dividers */
+  --pg-aubergine-50:  #77216F;  /* link color · Canonical "light aubergine" */
+  --pg-aubergine-60:  #5A0F4D;  /* active states */
+  --pg-aubergine-70:  #44032E;  /* card edges on Terminal */
+  --pg-aubergine-80:  #2C001E;  /* CANONICAL BRAND · primary surface in Terminal */
+  --pg-aubergine-90:  #1A0011;  /* Terminal page background */
+  --pg-aubergine-100: #0D0008;  /* deepest shade — never used as fg */
+
+  /* ── Ubuntu Orange ────────────────────────────────────────────
+     The spark.  Reserved for moments that matter: focus rings,
+     selection, primary CTA in Terminal theme, accent in charts.
+     -50 is canonical Ubuntu Orange. */
+  --pg-orange-10:  #FFEFE6;  /* whisper-tint surfaces, "new" highlights */
+  --pg-orange-20:  #FFD4BD;  /* hover for orange ghost buttons */
+  --pg-orange-30:  #FFAE85;  /* Terminal links, soft accents */
+  --pg-orange-40:  #FF7848;  /* Terminal focus ring */
+  --pg-orange-50:  #E95420;  /* UBUNTU ORANGE · accent · Paper focus */
+  --pg-orange-60:  #C8420A;  /* tertiary button text, hover orange */
+  --pg-orange-70:  #A8370A;  /* pressed/active orange */
+  --pg-orange-80:  #7E2807;  /* deep label color on warm backgrounds */
+  --pg-orange-90:  #511904;
+
+  /* ── Warm Neutral ─────────────────────────────────────────────
+     Replaces Carbon's cool greys throughout.  Every text, border,
+     surface and disabled state pulls from here so the system never
+     reads "blue-cold" — it stays paper-warm even at 14 px.
+     -10 is the canonical paper.  -100 is canonical body text. */
+  --pg-warm-10:  #FAF7F4;  /* PAPER · default page background */
+  --pg-warm-20:  #F2EEE9;  /* hover surfaces, table zebra */
+  --pg-warm-30:  #E8E2DA;  /* subtle borders, dividers */
+  --pg-warm-40:  #DCD4CA;  /* strong borders, input edges */
+  --pg-warm-50:  #BFB5A8;  /* placeholder text, disabled */
+  --pg-warm-60:  #8E867E;  /* tertiary text, icon-secondary */
+  --pg-warm-70:  #6B6259;  /* secondary text · helper · captions */
+  --pg-warm-80:  #4A433C;  /* high-contrast secondary on light */
+  --pg-warm-90:  #2C2722;  /* never used directly — reserved */
+  --pg-warm-100: #1B1612;  /* BODY · primary text on Paper */
+
+  /* ── Status colors — warmed Carbon ────────────────────────────
+     Carbon's red/amber/green/blue, pulled slightly warmer so they
+     sit next to Ubuntu Orange without clashing.  -50 = solid
+     accent; -60 = darker variant for text; -light = soft bg. */
+  --pg-red-50:     #C8240F;  /* error · destructive */
+  --pg-red-60:     #A41C0B;  /* error text */
+  --pg-red-light:  #FBE5E0;  /* error inline-notification bg */
+  --pg-amber-50:   #E68B00;  /* warning */
+  --pg-amber-60:   #B86D00;  /* warning text */
+  --pg-amber-light:#FCEFD3;  /* warning bg */
+  --pg-green-50:   #1D7A4B;  /* success · healthy */
+  --pg-green-60:   #155A37;  /* success text */
+  --pg-green-light:#E0F0E5;  /* success bg */
+  --pg-blue-50:    #2563CB;  /* info */
+  --pg-blue-60:    #1B4FA8;  /* info text */
+  --pg-blue-light: #E5EEFB;  /* info bg */
+
+  /* ── Extended accents — for charts, illustration, data-viz ──── */
+  --pg-accent-magenta:  #A21F6F;  /* chart series 2 · visited links */
+  --pg-accent-teal:     #117C7C;  /* chart series 3 */
+  --pg-accent-sage:     #5E8C61;  /* chart series 4 · "calm" success */
+  --pg-accent-prussian: #1B3A4B;  /* chart series 5 · deep neutral */
+
+
+  /* ===========================================================
+     2.  SPACING SCALE  (Carbon, 4 px grid, exact)
+     Index 01–13.  Numeric step doubles roughly every 2 stops.
+     =========================================================== */
+  --pg-space-0:   0;
+  --pg-space-01:  2px;    /* hairline · between adjacent siblings */
+  --pg-space-02:  4px;    /* icon-label gap · chip padding */
+  --pg-space-03:  8px;    /* default inline gap · button x-pad */
+  --pg-space-04:  12px;   /* form-control inner padding */
+  --pg-space-05:  16px;   /* card padding · stacked controls */
+  --pg-space-06:  24px;   /* section gap inside a panel */
+  --pg-space-07:  32px;   /* group separation */
+  --pg-space-08:  40px;   /* major group · sidebar gutter */
+  --pg-space-09:  48px;   /* chapter padding-top */
+  --pg-space-10:  64px;   /* page gutter · between chapters */
+  --pg-space-11:  80px;   /* hero negative space */
+  --pg-space-12:  96px;   /* footer top · page bottom */
+  --pg-space-13:  160px;  /* full hero, splash blocks */
+
+  /* ===========================================================
+     3.  RADII — Ubuntu-soft, Carbon-precise
+     Never larger than the element's smallest dimension / 2.
+     0 px is reserved for table cell edges only.
+     =========================================================== */
+  --pg-radius-0:    0;        /* table-cell shared edges */
+  --pg-radius-xs:   3px;      /* tags · chips · focus indicators */
+  --pg-radius-sm:   6px;      /* inputs · buttons (default) */
+  --pg-radius-md:   8px;      /* cards · tiles · toasts */
+  --pg-radius-lg:   12px;     /* dialogs · sheets · window chrome */
+  --pg-radius-xl:   16px;     /* illustration panels · hero blocks */
+  --pg-radius-pill: 999px;    /* toggles · status pills · avatars */
+
+  /* ===========================================================
+     4.  TYPE SCALE — Carbon "productive" (12 → 76 px)
+     Each step has a recommended weight + line-height pairing.
+     =========================================================== */
+  --pg-fs-01: 0.75rem;    /* 12 · label / caption · 500 / 1.5 */
+  --pg-fs-02: 0.875rem;   /* 14 · BODY workhorse · 400 / 1.5 */
+  --pg-fs-03: 1rem;       /* 16 · body-md · 400 / 1.5 */
+  --pg-fs-04: 1.125rem;   /* 18 · body-lg · 400 / 1.45 */
+  --pg-fs-05: 1.25rem;    /* 20 · lede · 400 / 1.4 */
+  --pg-fs-06: 1.5rem;     /* 24 · h5 · 500 / 1.3 */
+  --pg-fs-07: 1.75rem;    /* 28 · h4 · 500 / 1.25 */
+  --pg-fs-08: 2rem;       /* 32 · h3 · 500 / 1.2 */
+  --pg-fs-09: 2.25rem;    /* 36 · h2 · 400 / 1.15 */
+  --pg-fs-10: 2.625rem;   /* 42 · h1 · 300 / 1.1 */
+  --pg-fs-11: 3.375rem;   /* 54 · display-02 · 300 / 1.05 */
+  --pg-fs-12: 4.75rem;    /* 76 · display-01 · 200 / 1.0 */
+
+  /* Line-height tokens — Ubuntu reads slightly looser than Plex */
+  --pg-lh-tight:    1.2;
+  --pg-lh-snug:     1.35;
+  --pg-lh-normal:   1.5;
+  --pg-lh-relaxed:  1.65;
+
+  /* Letter-spacing tokens
+     Caps: use for OVERLINES + small SECTION LABELS only.
+     Tight: use for display & headings to keep them quiet. */
+  --pg-tracking-caps:  0.08em;
+  --pg-tracking-tight: -0.01em;
+
+  /* ── Font stacks ──────────────────────────────────────────────
+     Ubuntu Sans is loaded from Google Fonts in base.css. System
+     fonts are a last-resort safety net. */
+  --pg-font-sans:    "Ubuntu Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --pg-font-display: "Ubuntu Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --pg-font-mono:    "Ubuntu Sans Mono", ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* Font weights — Ubuntu ships 300/400/500/700 (+ italics) */
+  --pg-weight-light:    300;   /* display · hero */
+  --pg-weight-regular:  400;   /* body · default */
+  --pg-weight-medium:   500;   /* labels · h3–h5 · button text */
+  --pg-weight-bold:     700;   /* wordmark · emphasis */
+
+  /* ===========================================================
+     5.  MOTION  (Carbon durations + custom easings)
+     Anything responding to a click sits in 70–150 ms.
+     Slow durations are reserved for view transitions only.
+     =========================================================== */
+  --pg-duration-fast-01:     70ms;   /* micro state · hover-out */
+  --pg-duration-fast-02:     110ms;  /* default hover-in */
+  --pg-duration-moderate-01: 150ms;  /* component enter */
+  --pg-duration-moderate-02: 240ms;  /* popover · tooltip */
+  --pg-duration-slow-01:     400ms;  /* modal enter */
+  --pg-duration-slow-02:     700ms;  /* skeleton · page transition */
+
+  --pg-ease-standard:    cubic-bezier(0.2, 0, 0.38, 0.9);   /* default */
+  --pg-ease-entrance:    cubic-bezier(0, 0, 0.38, 0.9);     /* on enter */
+  --pg-ease-exit:        cubic-bezier(0.2, 0, 1, 0.9);      /* on exit */
+  --pg-ease-expressive:  cubic-bezier(0.4, 0.14, 0.3, 1);   /* hero · marketing */
+
+  /* ===========================================================
+     6.  ELEVATION — warm-tinted shadows
+     Tinted with aubergine, NEVER pure black, so they sit on
+     paper without going grey-cold.  Four levels only.
+     =========================================================== */
+  --pg-shadow-01: 0 1px 2px rgba(44, 0, 30, 0.06), 0 1px 1px rgba(44, 0, 30, 0.04);  /* resting card */
+  --pg-shadow-02: 0 2px 6px rgba(44, 0, 30, 0.08), 0 1px 2px rgba(44, 0, 30, 0.06);  /* hover · popover */
+  --pg-shadow-03: 0 8px 24px rgba(44, 0, 30, 0.10), 0 2px 6px rgba(44, 0, 30, 0.06); /* menu · sheet */
+  --pg-shadow-04: 0 20px 60px rgba(44, 0, 30, 0.16), 0 4px 12px rgba(44, 0, 30, 0.08); /* modal · dialog */
+  --pg-shadow-focus: 0 0 0 2px var(--pg-bg), 0 0 0 4px var(--pg-focus);              /* keyboard focus ring */
+
+  /* ===========================================================
+     7.  GRID  (Carbon 16-column, narrower max for warmer feel)
+     =========================================================== */
+  --pg-grid-margin:    var(--pg-space-05);   /* outer page margin */
+  --pg-grid-gutter:    var(--pg-space-05);   /* between columns */
+  --pg-grid-max-width: 1584px;               /* clamp for huge displays */
+}
+
+
+/* =============================================================
+   8.  SEMANTIC TOKENS — PAPER theme (light, default)
+   Carbon's token grammar mapped onto the Ubuntu warm palette.
+   When you switch [data-theme="terminal"] only these change.
+   Components NEVER reference --pg-warm-NN directly.
+   ============================================================= */
+:root,
+[data-theme="paper"] {
+
+  /* ── Backgrounds ── */
+  --pg-bg:                var(--pg-warm-10);            /* page */
+  --pg-bg-hover:          var(--pg-warm-20);            /* row hover */
+  --pg-bg-active:         var(--pg-warm-30);            /* row active */
+  --pg-bg-selected:       rgba(233, 84, 32, 0.10);      /* selected row tint */
+  --pg-bg-selected-hover: rgba(233, 84, 32, 0.16);
+  --pg-bg-inverse:        var(--pg-aubergine-80);       /* inverted toolbars */
+  --pg-bg-brand:          var(--pg-aubergine-80);       /* hero / chrome */
+
+  /* ── Layers (cards inside cards inside cards) ── */
+  --pg-layer-01:        #FFFFFF;            /* first card on page */
+  --pg-layer-02:        var(--pg-warm-10);  /* card inside layer-01 */
+  --pg-layer-03:        var(--pg-warm-20);  /* card inside layer-02 */
+  --pg-layer-01-hover:  var(--pg-warm-20);
+  --pg-layer-02-hover:  var(--pg-warm-20);
+  --pg-layer-03-hover:  var(--pg-warm-30);
+  --pg-layer-selected:  rgba(233, 84, 32, 0.10);
+
+  /* ── Form fields (Carbon's two-tone field convention) ── */
+  --pg-field-01:    #FFFFFF;           /* input on layer-01 */
+  --pg-field-02:    var(--pg-warm-10); /* input on layer-02 */
+  --pg-field-hover: var(--pg-warm-20);
+
+  /* ── Borders ── */
+  --pg-border-subtle-01:   var(--pg-warm-30);   /* default divider */
+  --pg-border-subtle-02:   var(--pg-warm-40);   /* card edge */
+  --pg-border-strong-01:   var(--pg-warm-60);   /* input edge */
+  --pg-border-inverse:     var(--pg-warm-100);  /* on bg-inverse */
+  --pg-border-interactive: var(--pg-orange-50); /* focus border */
+
+  /* ── Text ── */
+  --pg-text-primary:     var(--pg-warm-100);   /* headings, body */
+  --pg-text-secondary:   var(--pg-warm-70);    /* helper, captions */
+  --pg-text-placeholder: var(--pg-warm-50);    /* empty input text */
+  --pg-text-helper:      var(--pg-warm-70);
+  --pg-text-on-color:    #FFFFFF;              /* text on aubergine / orange */
+  --pg-text-disabled:    var(--pg-warm-50);
+  --pg-text-error:       var(--pg-red-60);
+  --pg-text-inverse:     var(--pg-warm-10);    /* on dark surfaces */
+  --pg-text-brand:       var(--pg-aubergine-80);
+
+  /* ── Icons (mirror text but can diverge) ── */
+  --pg-icon-primary:   var(--pg-warm-100);
+  --pg-icon-secondary: var(--pg-warm-70);
+  --pg-icon-on-color:  #FFFFFF;
+  --pg-icon-disabled:  var(--pg-warm-50);
+  --pg-icon-brand:     var(--pg-aubergine-80);
+  --pg-icon-accent:    var(--pg-orange-50);
+
+  /* ── Links ── */
+  --pg-link-primary:        var(--pg-aubergine-50);  /* inline links */
+  --pg-link-primary-hover:  var(--pg-aubergine-60);
+  --pg-link-visited:        var(--pg-accent-magenta);
+
+  /* ── Interactive — focus & accent ── */
+  --pg-interactive:  var(--pg-aubergine-80);   /* primary CTA bg */
+  --pg-accent:       var(--pg-orange-50);      /* secondary "spark" */
+  --pg-focus:        var(--pg-orange-50);      /* ALWAYS Ubuntu Orange */
+  --pg-focus-inset:  #FFFFFF;                  /* inset of double-ring */
+
+  /* ── Buttons ── */
+  --pg-button-primary:         var(--pg-aubergine-80);
+  --pg-button-primary-hover:   var(--pg-aubergine-70);
+  --pg-button-primary-active:  var(--pg-aubergine-90);
+  --pg-button-secondary:        transparent;       /* outlined */
+  --pg-button-secondary-hover:  var(--pg-warm-20);
+  --pg-button-secondary-active: var(--pg-warm-30);
+  --pg-button-tertiary:         var(--pg-orange-50);  /* orange link-as-button */
+  --pg-button-tertiary-hover:   var(--pg-orange-60);
+  --pg-button-tertiary-active:  var(--pg-orange-70);
+  --pg-button-danger:          var(--pg-red-50);
+  --pg-button-danger-hover:    var(--pg-red-60);
+  --pg-button-disabled:        var(--pg-warm-30);
+
+  /* ── Status (support tokens map to functional palette) ── */
+  --pg-support-error:    var(--pg-red-50);
+  --pg-support-warning:  var(--pg-amber-50);
+  --pg-support-success:  var(--pg-green-50);
+  --pg-support-info:     var(--pg-blue-50);
+  --pg-support-error-bg:   var(--pg-red-light);
+  --pg-support-warning-bg: var(--pg-amber-light);
+  --pg-support-success-bg: var(--pg-green-light);
+  --pg-support-info-bg:    var(--pg-blue-light);
+
+  /* ── Misc ── */
+  --pg-highlight: rgba(233, 84, 32, 0.18);   /* text-selection background */
+  --pg-overlay:   rgba(44, 0, 30, 0.5);      /* modal scrim */
+  --pg-skeleton-bg:      var(--pg-warm-20);
+  --pg-skeleton-element: var(--pg-warm-30);
+
+  color-scheme: light;
+}
+
+
+/* =============================================================
+   9.  SEMANTIC TOKENS — TERMINAL theme (dark, aubergine)
+   Same names, different values.  The brand inverts: orange now
+   does the heavy lifting because aubergine is the entire room.
+   ============================================================= */
+[data-theme="terminal"] {
+
+  --pg-bg:                var(--pg-aubergine-90);
+  --pg-bg-hover:          var(--pg-aubergine-80);
+  --pg-bg-active:         var(--pg-aubergine-70);
+  --pg-bg-selected:       rgba(233, 84, 32, 0.18);
+  --pg-bg-selected-hover: rgba(233, 84, 32, 0.26);
+  --pg-bg-inverse:        var(--pg-warm-10);
+  --pg-bg-brand:          var(--pg-aubergine-80);
+
+  --pg-layer-01:        var(--pg-aubergine-80);
+  --pg-layer-02:        var(--pg-aubergine-70);
+  --pg-layer-03:        var(--pg-aubergine-60);
+  --pg-layer-01-hover:  var(--pg-aubergine-70);
+  --pg-layer-02-hover:  var(--pg-aubergine-60);
+  --pg-layer-03-hover:  var(--pg-aubergine-50);
+  --pg-layer-selected:  rgba(233, 84, 32, 0.18);
+
+  --pg-field-01:    var(--pg-aubergine-80);
+  --pg-field-02:    var(--pg-aubergine-70);
+  --pg-field-hover: var(--pg-aubergine-70);
+
+  --pg-border-subtle-01:   var(--pg-aubergine-70);
+  --pg-border-subtle-02:   var(--pg-aubergine-60);
+  --pg-border-strong-01:   var(--pg-aubergine-40);
+  --pg-border-inverse:     var(--pg-warm-10);
+  --pg-border-interactive: var(--pg-orange-40);
+
+  --pg-text-primary:     #F4EFED;
+  --pg-text-secondary:   #B9ACAE;
+  --pg-text-placeholder: #847780;
+  --pg-text-helper:      #B9ACAE;
+  --pg-text-on-color:    var(--pg-aubergine-90);
+  --pg-text-disabled:    #6B5B66;
+  --pg-text-error:       #FF8866;
+  --pg-text-inverse:     var(--pg-warm-100);
+  --pg-text-brand:       var(--pg-orange-30);
+
+  --pg-icon-primary:   #F4EFED;
+  --pg-icon-secondary: #B9ACAE;
+  --pg-icon-on-color:  var(--pg-aubergine-90);
+  --pg-icon-disabled:  #6B5B66;
+  --pg-icon-brand:     var(--pg-orange-30);
+  --pg-icon-accent:    var(--pg-orange-40);
+
+  --pg-link-primary:       var(--pg-orange-30);
+  --pg-link-primary-hover: var(--pg-orange-20);
+  --pg-link-visited:       #C795B8;
+
+  --pg-interactive:  var(--pg-orange-50);
+  --pg-accent:       var(--pg-orange-50);
+  --pg-focus:        var(--pg-orange-40);
+  --pg-focus-inset:  var(--pg-aubergine-90);
+
+  --pg-button-primary:        var(--pg-orange-50);
+  --pg-button-primary-hover:  var(--pg-orange-40);
+  --pg-button-primary-active: var(--pg-orange-60);
+  --pg-button-secondary:        transparent;
+  --pg-button-secondary-hover:  var(--pg-aubergine-70);
+  --pg-button-secondary-active: var(--pg-aubergine-60);
+  --pg-button-tertiary:        var(--pg-orange-50);
+  --pg-button-tertiary-hover:  var(--pg-orange-40);
+  --pg-button-tertiary-active: var(--pg-orange-60);
+  --pg-button-danger:          var(--pg-red-50);
+  --pg-button-danger-hover:    #E64A3A;
+  --pg-button-disabled:        var(--pg-aubergine-70);
+
+  --pg-support-error:    #FF6F5C;
+  --pg-support-warning:  #FFB347;
+  --pg-support-success:  #4FBE7E;
+  --pg-support-info:     #6FA0E6;
+  --pg-support-error-bg:   rgba(255, 111, 92, 0.15);
+  --pg-support-warning-bg: rgba(255, 179, 71, 0.15);
+  --pg-support-success-bg: rgba(79, 190, 126, 0.15);
+  --pg-support-info-bg:    rgba(111, 160, 230, 0.15);
+
+  --pg-highlight: rgba(233, 84, 32, 0.30);
+  --pg-overlay:   rgba(13, 0, 8, 0.7);
+  --pg-skeleton-bg:      var(--pg-aubergine-70);
+  --pg-skeleton-element: var(--pg-aubergine-60);
+
+  color-scheme: dark;
+}
+
+
+/* =============================================================
+   10.  COMPONENT TOKENS — density & shared sizing
+   Carbon's "compact" by default.  Change --pg-control and every
+   primitive (button, input, select) follows.
+   ============================================================= */
+:root {
+  --pg-control-sm: 24px;   /* dense table actions */
+  --pg-control:    32px;   /* DEFAULT — Carbon compact */
+  --pg-control-md: 40px;   /* comfortable web density */
+  --pg-control-lg: 48px;   /* touch targets · mobile */
+
+  --pg-border-width:       1px;
+  --pg-border-width-focus: 2px;
+}

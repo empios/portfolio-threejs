@@ -1,0 +1,354 @@
+/* ============================================================
+   THE ENGINEER'S CODEX — the printed edition
+   Loaded after folio.css.
+
+   The folio and the CV are one document. Everything below reflows
+   the same markup and the same typed content into two sheets of A4:
+   the instruments, the search drawer and the turning orrery fall
+   away, and what a reader can act on stays — who, where to write,
+   what he has done, and with what.
+
+   It prints in whichever language is on screen.
+   ============================================================ */
+
+@page {
+  size: A4;
+  margin: 14mm 15mm;
+}
+
+@media print {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 9.5pt;
+    line-height: 1.42;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* ---- Everything that only makes sense on a screen ---------------- */
+  .fo-header,
+  .fo-grain,
+  .fo-lang,
+  .fo-hero__stage,
+  .fo-hero__fallback,
+  .fo-hero__frame,
+  .fo-hero__cue,
+  .fo-hero__actions,
+  .fo-course__instrument,
+  .fo-course__register,
+  .fo-section__note,
+  .fo-rule,
+  .fo-seal,
+  .fo-plate__figure,
+  #archive {
+    display: none !important;
+  }
+
+  /* ---- A CV's order is not a folio's ------------------------------- */
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+  #top {
+    order: 1;
+  }
+  #correspondence {
+    order: 2;
+  } /* how to reach him, directly under the name */
+  #course {
+    order: 3;
+  }
+  #plates {
+    order: 4;
+  }
+  #instruments {
+    order: 5;
+  }
+
+  /* ---- Masthead ---------------------------------------------------- */
+  .fo-hero {
+    display: block;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .fo-hero__inner {
+    max-width: none;
+    padding: 0;
+  }
+
+  .fo-hero__copy {
+    max-width: none;
+  }
+
+  .fo-hero__name {
+    font-size: 26pt;
+    line-height: 1.05;
+    margin: 1mm 0 2mm;
+  }
+
+  /* One line on paper. The space before it survives the hidden break. */
+  .fo-hero__name br {
+    display: none;
+  }
+
+  .fo-hero__role {
+    --fo-mono-fs: 8pt;
+    --fo-mono-ls: 0.16em;
+    margin-bottom: 2.5mm;
+    color: #333;
+  }
+
+  .fo-hero__lede {
+    font-size: 10.5pt;
+    line-height: 1.4;
+    max-width: none;
+    color: #222;
+  }
+
+  /* ---- Contact strip ----------------------------------------------- */
+  .fo-correspondence {
+    padding: 3mm 0;
+    margin-bottom: 4mm;
+    text-align: left;
+    background: none;
+    border-bottom: 0.4pt solid #999;
+  }
+
+  .fo-correspondence .fo-eyebrow,
+  .fo-correspondence .fo-title,
+  .fo-correspondence__note {
+    display: none;
+  }
+
+  .fo-correspondence__actions {
+    justify-content: flex-start;
+    gap: 1mm 6mm;
+    margin: 0;
+  }
+
+  .fo-correspondence__actions a {
+    --fo-mono-fs: 8.5pt;
+    --fo-mono-ls: 0.02em;
+    padding: 0;
+    border: none;
+    color: #000;
+    text-transform: none;
+  }
+
+  /* A printed link is worthless without its address. */
+  .fo-correspondence__actions a[href^='http']::after {
+    content: ' ' attr(href);
+    color: #555;
+  }
+
+  .fo-correspondence__terms {
+    --fo-mono-fs: 8pt;
+    margin-top: 1.5mm;
+    color: #444;
+  }
+
+  /* ---- Section headings -------------------------------------------- */
+  .fo-section {
+    padding: 0;
+    margin: 0 0 5mm;
+  }
+
+  .fo-section--band {
+    margin-top: 0;
+    background: none;
+    border: none;
+  }
+
+  .fo-section__head {
+    margin: 0 0 3mm;
+    text-align: left;
+  }
+
+  .fo-eyebrow {
+    --fo-mono-fs: 7.5pt;
+    --fo-mono-ls: 0.16em;
+    color: #666;
+  }
+
+  .fo-title {
+    font-size: 15pt;
+    margin: 0.5mm 0 0;
+    padding-bottom: 1mm;
+    border-bottom: 0.4pt solid #999;
+  }
+
+  /* A heading at the foot of a page is a heading in the wrong place. */
+  .fo-section__head,
+  .fo-title,
+  .fo-catalogue__head {
+    break-after: avoid;
+  }
+
+  /* ---- Register of service ----------------------------------------- */
+  .fo-register {
+    display: block;
+  }
+
+  .fo-register__entry {
+    margin-bottom: 3.5mm;
+    break-inside: avoid;
+  }
+
+  .fo-register__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4mm;
+  }
+
+  .fo-register__role {
+    font-size: 10.5pt;
+    font-weight: 700;
+  }
+
+  .fo-register__dates {
+    --fo-mono-fs: 8pt;
+    flex: none;
+    color: #444;
+  }
+
+  .fo-register__summary {
+    margin: 0.8mm 0;
+    color: #222;
+  }
+
+  .fo-register__stack {
+    --fo-mono-fs: 8pt;
+    --fo-mono-ls: 0.02em;
+    color: #555;
+    text-transform: none;
+  }
+
+  /* ---- Selected work ----------------------------------------------- */
+  .fo-plates {
+    display: block;
+  }
+
+  .fo-plate {
+    display: block;
+    padding: 2mm 0 0;
+    margin-bottom: 3.5mm;
+    background: none;
+    border: none;
+    border-top: 0.4pt solid #bbb;
+    border-radius: 0;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .fo-plate__body {
+    padding: 0;
+  }
+
+  .fo-plate__title {
+    font-size: 11pt;
+    margin: 0 0 1mm;
+  }
+
+  .fo-plate__body .fo-prose {
+    max-width: none;
+    margin: 0 0 1mm;
+    font-size: 9pt;
+    color: #222;
+  }
+
+  .fo-plate__metrics {
+    --fo-mono-fs: 7.5pt;
+    margin: 0 0 1mm;
+    color: #555;
+  }
+
+  .fo-plate__source {
+    --fo-mono-fs: 8pt;
+    --fo-mono-ls: 0.02em;
+    margin-top: 1mm;
+    color: #555;
+    text-decoration: none;
+    text-transform: none;
+  }
+
+  .fo-plate__source::after {
+    content: ' ' attr(href);
+  }
+
+  /* ---- Tags become a plain run of names ---------------------------- */
+  .fo-tags {
+    gap: 0 3mm;
+  }
+
+  .fo-tag {
+    --fo-mono-fs: 8pt;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #444;
+  }
+
+  /* ---- Specimen catalogue ------------------------------------------ */
+  .fo-catalogue {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3mm 7mm;
+  }
+
+  .fo-catalogue > * {
+    break-inside: avoid;
+  }
+
+  .fo-catalogue__head {
+    padding-bottom: 1mm;
+    border-bottom: 0.4pt solid #666;
+  }
+
+  .fo-catalogue__title {
+    --fo-mono-fs: 8pt;
+  }
+
+  .fo-catalogue__count {
+    display: none;
+  }
+
+  .fo-leader {
+    padding: 0.7mm 0;
+    border-bottom: none;
+  }
+
+  .fo-leader__num {
+    display: none;
+  }
+
+  .fo-leader__name {
+    font-size: 8.5pt;
+  }
+
+  .fo-leader__dots {
+    border-bottom-color: #ccc;
+  }
+
+  .fo-leader__meta {
+    --fo-mono-fs: 8pt;
+    color: #555;
+  }
+
+  /* ---- Colophon ---------------------------------------------------- */
+  .fo-colophon {
+    --fo-mono-fs: 7pt;
+    padding: 2mm 0 0;
+    background: none;
+    color: #666;
+    border-top: 0.4pt solid #ccc;
+  }
+}
