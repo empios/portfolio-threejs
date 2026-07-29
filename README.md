@@ -22,24 +22,17 @@ Pages included.
 
 ## Publishing
 
+Live at **https://empios.github.io/portfolio-threejs/**, from
+[empios/portfolio-threejs](https://github.com/empios/portfolio-threejs).
+
 `.github/workflows/deploy.yml` builds and deploys on every push to `main`.
-Two things must be done once, by hand:
+One thing must be done once, by hand: in the repository's *Settings → Pages*,
+set **Source** to **GitHub Actions**. Without it the workflow builds and then
+fails at the deploy step.
 
-1. **Create the remote and push.** The repository is initialised locally with
-   `main` as its branch, but has no remote:
-
-```bash
-git remote add origin git@github.com:empios/personal-portfolio.git && git push -u origin main
-```
-
-2. **Turn Pages on.** In the repository's *Settings → Pages*, set **Source** to
-   **GitHub Actions**. Without this the workflow builds and then fails at the
-   deploy step.
-
-If the folio ends up anywhere other than
-`https://empios.github.io/personal-portfolio/`, change the four absolute URLs
-in the `<head>` of `index.html` — `og:image` in particular must be absolute or
-no platform will render the card.
+If the folio ever moves, change the three absolute URLs in the `<head>` of
+`index.html` — `og:image` in particular must be absolute or no platform will
+render the card.
 
 The sharing card is authored as `scripts/og.svg` and committed as
 `public/og.png`, because no platform renders an SVG in an `og:image`.
