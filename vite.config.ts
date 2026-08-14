@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Relative base so the built folio can be served from any shelf — GitHub Pages included.
+// Base URL set to root '/' for custom domain www.pawelvlodarczyk.pl
 export default defineConfig({
   plugins: [react()],
-  base: './',
+  base: '/',
 });

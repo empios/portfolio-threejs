@@ -22,15 +22,23 @@ export const UI = {
       pl: 'Tablica 0 · Frontyspis · Rysowane z natury',
     },
     role: {
-      en: 'Full-stack software engineer',
-      pl: 'Inżynier oprogramowania full-stack',
+      en: 'Full-Stack Software Engineer & Applied ML · 6 Years Exp · MSc CS',
+      pl: 'Full-Stack Software Engineer & Applied ML · 6 Lat Doświadczenia · MSc CS',
     },
-    lede: {
+    headline: {
+      en: 'Full-Stack & Applied ML Engineer with 6 years of commercial experience. Deploying production AI in enterprise, building scalable web applications, and running software house CodeWorks (codeworks-it.pl).',
+      pl: 'Full-Stack Software Engineer & Applied ML z 6-letnim doświadczeniem (mgr inż. informatyki). Wdrażam produkcyjne AI dla klientów enterprise, buduję skalowalne aplikacje webowe oraz prowadzę software house CodeWorks (codeworks-it.pl).',
+    },
+    sublede: {
       en: "Production systems built with an instrument-maker's care — Python & FastAPI below the waterline, React & Next.js above it, applied machine learning throughout.",
       pl: 'Systemy pisane z pieczołowitością konstruktora przyrządów — takie, które wytrzymują produkcję. Python i FastAPI pod pokładem, React i Next.js na mostku, uczenie maszynowe od dziobu po rufę.',
     },
-    examine: { en: 'Examine the plates', pl: 'Obejrzyj tablice' },
-    letter: { en: 'Send a letter', pl: 'Wyślij list' },
+    credentials: {
+      en: 'Enterprise AI (Insurance) · MSc in Computer Science · Founder @ CodeWorks',
+      pl: 'Wdrożenia Enterprise AI (Ubezpieczenia) · Mgr inż. informatyki · Founder CodeWorks',
+    },
+    examine: { en: 'Examine Case Studies', pl: 'Zobacz Wdrożenia' },
+    letter: { en: 'Contact me', pl: 'Kontakt' },
     scroll: { en: 'Scroll', pl: 'Przewiń' },
   },
 

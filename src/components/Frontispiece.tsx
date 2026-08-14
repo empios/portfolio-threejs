@@ -56,13 +56,62 @@ export function Frontispiece({ instrument, rotationSpeed }: FrontispieceProps) {
             {IDENTITY.nameLines[1]}
           </h1>
           <p className="fo-mono fo-hero__role">{t(UI.hero.role)}</p>
-          <p className="fo-hero__lede">{t(UI.hero.lede)}</p>
-          <div className="fo-hero__actions">
-            <a className="fo-mono fo-btn fo-btn--solid" href="#plates">
+          <p
+            className="fo-prose"
+            style={{
+              fontSize: 'clamp(17px, 1.8vw, 21px)',
+              fontWeight: 500,
+              lineHeight: 1.45,
+              color: 'var(--pg-text-primary)',
+              marginBottom: '14px',
+            }}
+          >
+            {t(UI.hero.headline)}
+          </p>
+          <p className="fo-hero__lede" style={{ fontSize: 'clamp(15px, 1.5vw, 18px)', marginBottom: '18px' }}>
+            {t(UI.hero.sublede)}
+          </p>
+          <p
+            className="fo-mono"
+            style={{
+              fontSize: '0.72rem',
+              color: 'var(--pg-aubergine-50)',
+              letterSpacing: '0.12em',
+              marginBottom: '28px',
+              padding: '6px 12px',
+              background: 'var(--fo-well)',
+              display: 'inline-block',
+              borderLeft: '2px solid var(--pg-aubergine-50)',
+            }}
+          >
+            {t(UI.hero.credentials)}
+          </p>
+
+          <div className="fo-hero__actions" style={{ marginTop: '12px' }}>
+            <a className="fo-mono fo-btn fo-btn--solid" href="#cases">
               {t(UI.hero.examine)}
             </a>
-            <a className="fo-mono fo-btn fo-btn--outline" href="#correspondence">
-              {t(UI.hero.letter)}
+            <a
+              className="fo-mono fo-btn fo-btn--outline"
+              href="mailto:pawelwlodarczyk97@yahoo.com"
+            >
+              Email ↗
+            </a>
+            <a
+              className="fo-mono fo-btn fo-btn--outline"
+              href="https://www.linkedin.com/in/pawelvlodarczyk"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn ↗
+            </a>
+            <a
+              className="fo-mono fo-btn fo-btn--outline"
+              href="https://codeworks-it.pl"
+              target="_blank"
+              rel="noreferrer"
+            >
+              CodeWorks ↗
             </a>
           </div>
         </div>

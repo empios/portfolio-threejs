@@ -26,24 +26,62 @@ function isLocale(value: unknown): value is Locale {
   return LOCALES.includes(value as Locale);
 }
 
-/** A previous choice wins; otherwise the browser is asked, and English answers for it. */
 function readInitialLocale(): Locale {
+  if (typeof window !== 'undefined') {
+    const path = window.location.pathname;
+    if (path.startsWith('/en')) {
+      return 'en';
+    }
+  }
   const stored = localStorage.getItem(STORAGE_KEY);
   if (isLocale(stored)) return stored;
-  return navigator.languages.some((tag) => tag.toLowerCase().startsWith('pl')) ? 'pl' : 'en';
+  return 'pl';
 }
 
 export function LocaleProvider({ children }: { readonly children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(readInitialLocale);
 
-  // The document must declare its own language for screen readers and hyphenation.
+  // Sync document lang, title and description
   useEffect(() => {
     document.documentElement.lang = locale;
+    const isPl = locale === 'pl';
+    document.title = isPl
+      ? 'Paweł Włodarczyk — Full-Stack & Applied ML Engineer'
+      : 'Paweł Włodarczyk — Full-Stack & Applied ML Engineer';
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute(
+        'content',
+        isPl
+          ? 'Paweł Włodarczyk — Full-Stack Software Engineer & Applied ML (6 lat doświadczenia, MSc CS). Wdrażanie AI dla enterprise i e-commerce. Prowadzę CodeWorks (codeworks-it.pl).'
+          : 'Paweł Włodarczyk — Full-Stack Software Engineer & Applied ML (6 years exp, MSc CS). Deploying AI for enterprise & e-commerce. Founder of CodeWorks (codeworks-it.pl).'
+      );
+    }
   }, [locale]);
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const isEn = window.location.pathname.startsWith('/en');
+      setLocaleState(isEn ? 'en' : 'pl');
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const setLocale = useCallback((next: Locale) => {
     setLocaleState(next);
     localStorage.setItem(STORAGE_KEY, next);
+    if (typeof window !== 'undefined') {
+      const currentPath = window.location.pathname;
+      const hash = window.location.hash;
+      if (next === 'en' && !currentPath.startsWith('/en')) {
+        window.history.pushState({}, '', '/en' + (hash || ''));
+      } else if (next === 'pl' && currentPath.startsWith('/en')) {
+        window.history.pushState({}, '', '/' + (hash || ''));
+      }
+    }
   }, []);
 
   const value = useMemo<LocaleContextValue>(
