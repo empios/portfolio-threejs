@@ -44,15 +44,17 @@ export const NAV: readonly NavEntry[] = [
   { id: 'correspondence', numeral: 'VI', label: { en: 'Contact', pl: 'Kontakt' } },
 ];
 
+import { CONTACT_EMAIL, GITHUB_URL, LINKEDIN_URL } from '../config/contact';
+
 export const CONTACT: readonly ContactLink[] = [
   {
-    label: 'pawelwlodarczyk97@yahoo.com',
-    href: 'mailto:pawelwlodarczyk97@yahoo.com',
+    label: CONTACT_EMAIL,
+    href: `mailto:${CONTACT_EMAIL}`,
     variant: 'solid',
   },
   {
     label: 'LinkedIn ↗',
-    href: 'https://www.linkedin.com/in/pawelvlodarczyk',
+    href: LINKEDIN_URL,
     variant: 'ghost',
     external: true,
   },
@@ -62,5 +64,5 @@ export const CONTACT: readonly ContactLink[] = [
     variant: 'ghost',
     external: true,
   },
-  { label: 'GitHub ↗', href: 'https://github.com/empios', variant: 'ghost', external: true },
+  { label: 'GitHub ↗', href: GITHUB_URL, variant: 'ghost', external: true },
 ];

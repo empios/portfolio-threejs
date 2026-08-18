@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { CONTACT_EMAIL, LINKEDIN_URL } from '../config/contact';
 import { CODEX_TITLE, IDENTITY } from '../content/site';
 import { UI } from '../content/ui';
 import { useT } from '../i18n/LocaleProvider';
@@ -93,13 +94,13 @@ export function Frontispiece({ instrument, rotationSpeed }: FrontispieceProps) {
             </a>
             <a
               className="fo-mono fo-btn fo-btn--outline"
-              href="mailto:pawelwlodarczyk97@yahoo.com"
+              href={`mailto:${CONTACT_EMAIL}`}
             >
               Email ↗
             </a>
             <a
               className="fo-mono fo-btn fo-btn--outline"
-              href="https://www.linkedin.com/in/pawelvlodarczyk"
+              href={LINKEDIN_URL}
               target="_blank"
               rel="noreferrer"
             >

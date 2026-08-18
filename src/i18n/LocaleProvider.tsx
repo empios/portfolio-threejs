@@ -26,38 +26,53 @@ function isLocale(value: unknown): value is Locale {
   return LOCALES.includes(value as Locale);
 }
 
-function readInitialLocale(): Locale {
+function readInitialLocale(override?: Locale): Locale {
+  if (override) return override;
   if (typeof window !== 'undefined') {
     const path = window.location.pathname;
     if (path.startsWith('/en')) {
       return 'en';
     }
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (isLocale(stored)) return stored;
   }
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (isLocale(stored)) return stored;
   return 'pl';
 }
 
-export function LocaleProvider({ children }: { readonly children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(readInitialLocale);
+export function LocaleProvider({
+  children,
+  initialLocale,
+}: {
+  readonly children: ReactNode;
+  readonly initialLocale?: Locale | undefined;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(() => readInitialLocale(initialLocale));
 
-  // Sync document lang, title and description
+  // Sync document lang, title, description, and OG meta tags
   useEffect(() => {
     document.documentElement.lang = locale;
     const isPl = locale === 'pl';
-    document.title = isPl
-      ? 'Paweł Włodarczyk — Full-Stack & Applied ML Engineer'
-      : 'Paweł Włodarczyk — Full-Stack & Applied ML Engineer';
+    const title = isPl
+      ? 'Paweł Włodarczyk — Full-Stack & Applied ML Engineer | CodeWorks'
+      : 'Paweł Włodarczyk — Full-Stack & Applied ML Engineer | CodeWorks';
+    const description = isPl
+      ? 'Paweł Włodarczyk — Full-Stack Software Engineer & Applied ML (6 lat doświadczenia, mgr inż. informatyki). Wdrażanie AI dla enterprise i e-commerce. Prowadzę CodeWorks (codeworks-it.pl).'
+      : 'Paweł Włodarczyk — Full-Stack Software Engineer & Applied ML (6 years exp, MSc CS). Deploying AI for enterprise & e-commerce. Founder of CodeWorks (codeworks-it.pl).';
+    const url = isPl ? 'https://www.pawelvlodarczyk.pl/' : 'https://www.pawelvlodarczyk.pl/en';
 
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        isPl
-          ? 'Paweł Włodarczyk — Full-Stack Software Engineer & Applied ML (6 lat doświadczenia, MSc CS). Wdrażanie AI dla enterprise i e-commerce. Prowadzę CodeWorks (codeworks-it.pl).'
-          : 'Paweł Włodarczyk — Full-Stack Software Engineer & Applied ML (6 years exp, MSc CS). Deploying AI for enterprise & e-commerce. Founder of CodeWorks (codeworks-it.pl).'
-      );
-    }
+    document.title = title;
+
+    const setMeta = (selector: string, attr: string, val: string) => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, val);
+    };
+
+    setMeta('meta[name="description"]', 'content', description);
+    setMeta('meta[property="og:title"]', 'content', title);
+    setMeta('meta[property="og:description"]', 'content', description);
+    setMeta('meta[property="og:url"]', 'content', url);
+    setMeta('meta[name="twitter:title"]', 'content', title);
+    setMeta('meta[name="twitter:description"]', 'content', description);
   }, [locale]);
 
   // Handle browser back/forward buttons

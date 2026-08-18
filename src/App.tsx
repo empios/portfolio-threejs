@@ -17,12 +17,15 @@ import type { InstrumentKind } from './three/heroInstrument';
  * drawn; they are props rather than state because nothing on the page changes
  * them — they are the binding decisions of this edition.
  */
+import type { Locale } from './i18n/locale';
+
 export interface AppProps {
   readonly heroInstrument?: InstrumentKind;
   /** Multiplier on the frontispiece instrument's turning, 0–3. */
   readonly rotationSpeed?: number;
   /** The laid-paper tooth over the whole folio. */
   readonly paperGrain?: boolean;
+  readonly initialLocale?: Locale | undefined;
 }
 
 function Folio({ heroInstrument = 'armillary', rotationSpeed = 1, paperGrain = true }: AppProps) {
@@ -52,9 +55,9 @@ function Folio({ heroInstrument = 'armillary', rotationSpeed = 1, paperGrain = t
   );
 }
 
-export function App(props: AppProps) {
+export function App({ initialLocale, ...props }: AppProps) {
   return (
-    <LocaleProvider>
+    <LocaleProvider initialLocale={initialLocale}>
       <Folio {...props} />
     </LocaleProvider>
   );

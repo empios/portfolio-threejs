@@ -1,3 +1,4 @@
+import { CONTACT_EMAIL } from '../config/contact';
 import type { Localized } from '../i18n/locale';
 
 /**
@@ -247,8 +248,8 @@ export const RECORDS: readonly ArchiveRecord[] = [
     title: { en: 'Terms of engagement', pl: 'Warunki współpracy' },
     source: { en: 'Register of Service · Terms', pl: 'Rejestr służby · Warunki' },
     text: {
-      en: 'Based in Poland (UTC+2), six years of professional practice, open to contract and remote engagements — particularly AI-adjacent ones. Letters to pawelwlodarczyk97@yahoo.com.',
-      pl: 'Polska (UTC+2), sześć lat praktyki zawodowej, otwarty na kontrakt i pracę zdalną — najchętniej w pobliżu AI. Listy na pawelwlodarczyk97@yahoo.com.',
+      en: `Based in Poland (UTC+2), six years of professional practice, open to contract and remote engagements — particularly AI-adjacent ones. Contact: ${CONTACT_EMAIL}.`,
+      pl: `Polska (UTC+2), sześć lat praktyki zawodowej, otwarty na kontrakt i pracę zdalną — najchętniej w pobliżu AI. Kontakt: ${CONTACT_EMAIL}.`,
     },
     tags: [
       'available', 'availability', 'remote', 'contract', 'hire', 'hiring', 'location', 'poland',
