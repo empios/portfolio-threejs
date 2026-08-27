@@ -839,6 +839,8 @@ a:hover {
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--fo-ink-soft);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .fo-leader--pick[aria-current='true'] .fo-leader__name {
@@ -856,7 +858,8 @@ a:hover {
 .fo-leader__meta {
   --fo-mono-fs: 0.65625rem;
   --fo-mono-ls: 0;
-  flex: none;
+  flex: 0 1 auto;
+  min-width: 0;
   color: var(--pg-text-secondary);
 }
 
