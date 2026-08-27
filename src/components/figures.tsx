@@ -42,6 +42,44 @@ function Arrow({ x, y }: { readonly x: number; readonly y: number }) {
   return <polyline points={`${x - 4},${y - 4} ${x},${y} ${x - 4},${y + 4}`} />;
 }
 
+function EnterpriseFigure() {
+  return (
+    <Figure label="Diagram of the enterprise services intelligence platform: client inquiries flow into an AI semantic evaluation core and match verified service offerings in real time">
+      <rect x="22" y="44" width="48" height="60" />
+      <line x1="30" y1="58" x2="62" y2="58" opacity="0.6" />
+      <line x1="30" y1="68" x2="56" y2="68" opacity="0.6" />
+      <line x1="30" y1="78" x2="62" y2="78" opacity="0.6" />
+      <text className="lbl" x="46" y="120" textAnchor="middle">
+        INQUIRY
+      </text>
+      <line x1="70" y1="74" x2="102" y2="74" />
+      <Arrow x={102} y={74} />
+      <circle cx="138" cy="74" r="28" />
+      <circle className="dash" cx="138" cy="74" r="34" opacity="0.7" />
+      <text className="mark mark--sm" x="138" y="78" textAnchor="middle">
+        AI CORE
+      </text>
+      <text className="lbl" x="138" y="126" textAnchor="middle">
+        SEMANTIC ROUTING
+      </text>
+      <line x1="172" y1="74" x2="204" y2="74" />
+      <Arrow x={204} y={74} />
+      <rect x="208" y="44" width="68" height="60" />
+      <circle cx="242" cy="66" r="10" />
+      <polyline points="238,66 241,69 247,63" />
+      <text className="lbl" x="242" y="90" textAnchor="middle">
+        OFFER
+      </text>
+      <text className="lbl" x="242" y="120" textAnchor="middle">
+        MATCHED SERVICE
+      </text>
+      <text className="lbl" x="150" y="162" textAnchor="middle">
+        INTEGRATED SERVICE PURCHASING PLATFORM
+      </text>
+    </Figure>
+  );
+}
+
 function TranslationFigure() {
   return (
     <Figure label="Diagram of the translation pipeline: source rows flow through machine translation and a three-stage QA circuit before shipping">
@@ -312,6 +350,7 @@ function PangolinFigure() {
 }
 
 export const FIGURES: Readonly<Record<FigureId, () => React.ReactElement>> = {
+  enterprise: EnterpriseFigure,
   translation: TranslationFigure,
   photographic: PhotographicFigure,
   reference: ReferenceFigure,

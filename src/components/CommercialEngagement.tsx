@@ -10,8 +10,8 @@ export function CommercialEngagement() {
     pl: 'Software House CodeWorks (codeworks-it.pl)',
   };
   const body = {
-    en: 'Looking for a dedicated team for a larger project or complex automation? I run software house CodeWorks (codeworks-it.pl) focused on AI deployments, process automation, and B2B systems for e-commerce and wholesale.',
-    pl: 'Potrzebujesz dedykowanego zespołu do większego projektu lub złożonej automatyzacji? Prowadzę software house CodeWorks (codeworks-it.pl) skupiony na wdrożeniach sztucznej inteligencji, automatyzacji procesów oraz systemach B2B dla e-commerce i hurtowni.',
+    en: 'Looking for a production AI deployment or complex automation? I run software house CodeWorks (codeworks-it.pl) focused on AI deployments, process automation, and B2B systems for e-commerce and wholesale.',
+    pl: 'Potrzebujesz wdrożenia produkcyjnego albo złożonej automatyzacji? Prowadzę software house CodeWorks (codeworks-it.pl) skupiony na wdrożeniach sztucznej inteligencji, automatyzacji procesów oraz systemach B2B dla e-commerce i hurtowni.',
   };
   const cta = { en: 'Visit codeworks-it.pl ↗', pl: 'Odwiedź codeworks-it.pl ↗' };
 

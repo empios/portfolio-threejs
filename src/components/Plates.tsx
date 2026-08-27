@@ -48,6 +48,9 @@ function PlateCard({ plate, index }: { readonly plate: Plate; readonly index: nu
 export function Plates() {
   const t = useT();
 
+  const commercialPlates = PLATES.filter((p) => p.group === 'commercial');
+  const workshopPlates = PLATES.filter((p) => p.group === 'workshop');
+
   return (
     <section id="plates" className="fo-section" aria-labelledby="plates-title">
       <SectionHeading
@@ -57,10 +60,41 @@ export function Plates() {
         titleId="plates-title"
       />
       <p className="fo-prose fo-prose--intro">{t(UI.plates.intro)}</p>
-      <div className="fo-plates">
-        {PLATES.map((plate, index) => (
-          <PlateCard key={plate.figure} plate={plate} index={index} />
-        ))}
+
+      <div className="fo-plates-groups">
+        <div className="fo-plates-group">
+          <header className="fo-plates-group__head">
+            <p className="fo-mono fo-plates-group__eyebrow">
+              {t(UI.plates.commercialSubgroup.eyebrow)}
+            </p>
+            <h3 className="fo-plates-group__title">
+              {t(UI.plates.commercialSubgroup.title)}
+            </h3>
+          </header>
+          <div className="fo-plates">
+            {commercialPlates.map((plate) => {
+              const index = PLATES.indexOf(plate);
+              return <PlateCard key={plate.figure} plate={plate} index={index} />;
+            })}
+          </div>
+        </div>
+
+        <div className="fo-plates-group">
+          <header className="fo-plates-group__head">
+            <p className="fo-mono fo-plates-group__eyebrow">
+              {t(UI.plates.workshopSubgroup.eyebrow)}
+            </p>
+            <h3 className="fo-plates-group__title">
+              {t(UI.plates.workshopSubgroup.title)}
+            </h3>
+          </header>
+          <div className="fo-plates">
+            {workshopPlates.map((plate) => {
+              const index = PLATES.indexOf(plate);
+              return <PlateCard key={plate.figure} plate={plate} index={index} />;
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -34,8 +34,8 @@ export const UI = {
       pl: 'Systemy pisane z pieczołowitością konstruktora przyrządów — takie, które wytrzymują produkcję. Python i FastAPI pod pokładem, React i Next.js na mostku, uczenie maszynowe od dziobu po rufę.',
     },
     credentials: {
-      en: 'Enterprise AI (Insurance) · MSc in Computer Science · Founder @ CodeWorks',
-      pl: 'Wdrożenia Enterprise AI (Ubezpieczenia) · Mgr inż. informatyki · Founder CodeWorks',
+      en: 'Enterprise AI (Services Platform) · MSc in Computer Science · Founder @ CodeWorks',
+      pl: 'Wdrożenia Enterprise AI (Platforma usług) · Mgr inż. informatyki · Founder CodeWorks',
     },
     examine: { en: 'Examine Plates', pl: 'Zobacz Tablice' },
     letter: { en: 'Contact me', pl: 'Kontakt' },
@@ -46,8 +46,16 @@ export const UI = {
     eyebrow: { en: 'Selected work', pl: 'Wybrane prace' },
     title: { en: 'Selected Plates', pl: 'Wybrane tablice' },
     intro: {
-      en: 'This folio records systems built for production rather than exhibition. Each plate is a working mechanism — designed, shipped, and kept running — reproduced here at reduced scale, with figures drawn from the originals.',
-      pl: 'W tym zbiorze opisano systemy zbudowane do pracy, nie na pokaz. Każda tablica to mechanizm czynny — zaprojektowany, wdrożony i utrzymywany w ruchu — odbity tutaj w zmniejszeniu, a ryciny sporządzono z oryginałów.',
+      en: 'This folio records two kinds of work: commercial deployments engineered for clients and kept in production, and mechanisms from my own workshop — built on personal initiative to probe the frontiers of local AI and systems engineering. Each plate is a working instrument, reproduced here at reduced scale, with figures drawn from the originals.',
+      pl: 'W tym zbiorze opisano dwa rodzaje prac: wdrożenia komercyjne, zaprojektowane dla klientów i utrzymywane w ruchu produkcyjnym, oraz narzędzia z własnego warsztatu — budowane z własnej inicjatywy, by badać granice lokalnego AI i inżynierii oprogramowania. Każda tablica to mechanizm czynny, odbity tutaj w zmniejszeniu, a ryciny sporządzono z oryginałów.',
+    },
+    commercialSubgroup: {
+      eyebrow: { en: 'Commercial Deployments', pl: 'Wdrożenia komercyjne' },
+      title: { en: 'Production Systems for Clients', pl: 'Systemy produkcyjne dla klientów' },
+    },
+    workshopSubgroup: {
+      eyebrow: { en: 'The Workshop', pl: 'Warsztat własny' },
+      title: { en: 'Independent Tools & Open Repositories', pl: 'Autorskie narzędzia i repozytoria' },
     },
     /** `{numeral}` is the plate's Roman number. */
     plate: { en: 'Plate {numeral}.', pl: 'Tablica {numeral}.' },
@@ -62,8 +70,8 @@ export const UI = {
       pl: 'Sześć lat wykreślonych na planetarium — nauki pośrodku, każda posada na własnej orbicie. Pociągnij, aby obrócić przyrząd; wskaż ciało niebieskie, aby odczytać wpis.',
     },
     figure: {
-      en: 'Fig. 7 — The course of service, in orbit',
-      pl: 'Ryc. 7 — Przebieg służby, na orbitach',
+      en: 'Fig. 8 — The course of service, in orbit',
+      pl: 'Ryc. 8 — Przebieg służby, na orbitach',
     },
     hint: { en: 'Drag to turn · select a body', pl: 'Pociągnij · wskaż ciało' },
     register: { en: 'Chapters of service', pl: 'Rozdziały służby' },

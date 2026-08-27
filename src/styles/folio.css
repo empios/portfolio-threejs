@@ -613,6 +613,35 @@ a:hover {
   box-shadow: var(--fo-shadow-plate);
 }
 
+.fo-plates-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.fo-plates-group__head {
+  text-align: center;
+  max-width: var(--fo-measure);
+  margin: 0 auto 28px;
+}
+
+.fo-plates-group__eyebrow {
+  --fo-mono-fs: 0.6875rem;
+  --fo-mono-ls: 0.22em;
+  color: var(--pg-aubergine-50);
+  margin: 0 0 6px;
+}
+
+.fo-plates-group__title {
+  font-family: var(--fo-font-display);
+  font-weight: 300;
+  font-size: clamp(24px, 2.8vw, 34px);
+  line-height: 1.15;
+  color: var(--pg-text-primary);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
 .fo-plates {
   display: grid;
   gap: 28px;
