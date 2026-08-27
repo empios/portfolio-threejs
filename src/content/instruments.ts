@@ -64,7 +64,7 @@ export const INSTRUMENT_CASES: readonly SpecimenCase[] = [
         name: 'Node.js',
         note: {
           en: 'REST endpoints, SSR tooling & microservice bridges',
-          pl: 'Punty końcowe REST, narzędzia SSR i mostki mikrousługowe',
+          pl: 'Punkty końcowe REST, narzędzia SSR i mostki mikrousługowe',
         },
       },
     ],
@@ -158,7 +158,7 @@ export const INSTRUMENT_CASES: readonly SpecimenCase[] = [
         name: 'Docker',
         note: {
           en: 'Reproducible containerized environments for enterprise and local deployments',
-          pl: 'Powtarzalne zkonteneryzowane środowiska dla wdrożeń enterprise i lokalnych',
+          pl: 'Powtarzalne skonteneryzowane środowiska dla wdrożeń enterprise i lokalnych',
         },
       },
       {

@@ -50,7 +50,7 @@ export function Archive() {
   return (
     <section id="archive" className="fo-section fo-section--band" aria-labelledby="archive-title">
       <SectionHeading
-        numeral="III"
+        numeral="IV"
         eyebrow={t(UI.archive.eyebrow)}
         title={t(UI.archive.title)}
         titleId="archive-title"

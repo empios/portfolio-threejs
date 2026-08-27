@@ -12,7 +12,7 @@ export function Instruments() {
   return (
     <section id="instruments" className="fo-section" aria-labelledby="instruments-title">
       <SectionHeading
-        numeral="IV"
+        numeral="V"
         eyebrow={t(UI.instruments.eyebrow)}
         title={t(UI.instruments.title)}
         titleId="instruments-title"

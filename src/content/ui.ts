@@ -37,7 +37,7 @@ export const UI = {
       en: 'Enterprise AI (Insurance) · MSc in Computer Science · Founder @ CodeWorks',
       pl: 'Wdrożenia Enterprise AI (Ubezpieczenia) · Mgr inż. informatyki · Founder CodeWorks',
     },
-    examine: { en: 'Examine Case Studies', pl: 'Zobacz Wdrożenia' },
+    examine: { en: 'Examine Plates', pl: 'Zobacz Tablice' },
     letter: { en: 'Contact me', pl: 'Kontakt' },
     scroll: { en: 'Scroll', pl: 'Przewiń' },
   },

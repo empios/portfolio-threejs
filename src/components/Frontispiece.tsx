@@ -89,7 +89,7 @@ export function Frontispiece({ instrument, rotationSpeed }: FrontispieceProps) {
           </p>
 
           <div className="fo-hero__actions" style={{ marginTop: '12px' }}>
-            <a className="fo-mono fo-btn fo-btn--solid" href="#cases">
+            <a className="fo-mono fo-btn fo-btn--solid" href="#plates">
               {t(UI.hero.examine)}
             </a>
             <a

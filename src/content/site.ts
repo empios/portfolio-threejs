@@ -36,11 +36,11 @@ export const CODEX_TITLE: Localized<string> = {
 };
 
 export const NAV: readonly NavEntry[] = [
-  { id: 'cases', numeral: 'I', label: { en: 'Case Studies', pl: 'Wdrożenia' } },
-  { id: 'plates', numeral: 'II', label: { en: 'Plates', pl: 'Tablice' } },
-  { id: 'course', numeral: 'III', label: { en: 'Course', pl: 'Służba' } },
-  { id: 'codeworks', numeral: 'IV', label: { en: 'Commercial', pl: 'Współpraca' } },
-  { id: 'archive', numeral: 'V', label: { en: 'Archive', pl: 'Archiwum' } },
+  { id: 'plates', numeral: 'I', label: { en: 'Plates', pl: 'Tablice' } },
+  { id: 'course', numeral: 'II', label: { en: 'Course', pl: 'Służba' } },
+  { id: 'codeworks', numeral: 'III', label: { en: 'Commercial', pl: 'Współpraca' } },
+  { id: 'archive', numeral: 'IV', label: { en: 'Archive', pl: 'Archiwum' } },
+  { id: 'instruments', numeral: 'V', label: { en: 'Instruments', pl: 'Przyrządy' } },
   { id: 'correspondence', numeral: 'VI', label: { en: 'Contact', pl: 'Kontakt' } },
 ];
 

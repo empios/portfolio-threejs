@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Archive } from './components/Archive';
-import { CaseStudies } from './components/CaseStudies';
 import { CommercialEngagement } from './components/CommercialEngagement';
 import { Colophon, Correspondence } from './components/Correspondence';
 import { CourseOfService } from './components/CourseOfService';
@@ -42,7 +41,6 @@ function Folio({ heroInstrument = 'armillary', rotationSpeed = 1, paperGrain = t
       <Header />
       <main>
         <Frontispiece instrument={heroInstrument} rotationSpeed={rotationSpeed} />
-        <CaseStudies />
         <Plates />
         <CourseOfService />
         <CommercialEngagement />

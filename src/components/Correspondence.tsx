@@ -16,7 +16,7 @@ export function Correspondence() {
         <span className="fo-seal__monogram">{IDENTITY.monogram}</span>
       </div>
 
-      <p className="fo-mono fo-eyebrow">§ V — {t(UI.correspondence.eyebrow)}</p>
+      <p className="fo-mono fo-eyebrow">§ VI — {t(UI.correspondence.eyebrow)}</p>
       <h2 id="correspondence-title" className="fo-title">
         {t(UI.correspondence.title)}
       </h2>
