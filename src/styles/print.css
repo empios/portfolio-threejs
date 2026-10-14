@@ -1,14 +1,6 @@
 /* ============================================================
-   THE ENGINEER'S CODEX — the printed edition
-   Loaded after folio.css.
-
-   The folio and the CV are one document. Everything below reflows
-   the same markup and the same typed content into two sheets of A4:
-   the instruments, the search drawer and the turning orrery fall
-   away, and what a reader can act on stays — who, where to write,
-   what he has done, and with what.
-
-   It prints in whichever language is on screen.
+   Printed edition: the same page as a two-sheet CV.
+   Ctrl/Cmd-P. Prints in whichever language is on screen.
    ============================================================ */
 
 @page {
@@ -25,330 +17,228 @@
     background: #fff;
     color: #000;
     font-size: 9.5pt;
-    line-height: 1.42;
+    line-height: 1.45;
   }
 
-  a {
-    color: #000;
-    text-decoration: none;
-  }
-
-  /* ---- Everything that only makes sense on a screen ---------------- */
-  .fo-header,
-  .fo-grain,
-  .fo-lang,
-  .fo-hero__stage,
-  .fo-hero__fallback,
-  .fo-hero__frame,
-  .fo-hero__cue,
-  .fo-hero__actions,
-  .fo-course__instrument,
-  .fo-course__register,
-  .fo-section__note,
-  .fo-rule,
-  .fo-seal,
-  .fo-plate__figure,
-  #archive {
+  /* Screen-only furniture. */
+  .lt-nav,
+  .lt-hero__cloud,
+  .lt-hero__labels,
+  .lt-hero__cloudHint,
+  .lt-hero__actions,
+  .lt-status__dot,
+  .lt-card__figure,
+  .lt-copy,
+  .lt-ask,
+  .lt-footer,
+  .lt-hero::before,
+  .lt-contact::before {
     display: none !important;
   }
 
-  /* ---- A CV's order is not a folio's ------------------------------- */
-  main {
-    display: flex;
-    flex-direction: column;
-  }
-  #top {
-    order: 1;
-  }
-  #correspondence {
-    order: 2;
-  } /* how to reach him, directly under the name */
-  #course {
-    order: 3;
-  }
-  #plates {
-    order: 4;
-  }
-  #instruments {
-    order: 5;
+  /* Nothing waits for a scroll on paper. */
+  [data-reveal],
+  .lt-enter,
+  .lt-scrub span {
+    opacity: 1 !important;
+    filter: none !important;
+    translate: none !important;
+    animation: none !important;
   }
 
-  /* ---- Masthead ---------------------------------------------------- */
-  .fo-hero {
-    display: block;
-    min-height: 0;
-    overflow: visible;
-  }
-
-  .fo-hero__inner {
+  .lt-wrap {
     max-width: none;
     padding: 0;
   }
 
-  .fo-hero__copy {
+  .lt-hero {
+    min-height: 0;
+    display: block;
+  }
+
+  .lt-hero__inner {
+    padding: 0 0 4mm;
+  }
+
+  .lt-hero__foot {
+    position: static;
+  }
+
+  .lt-status {
+    padding: 0;
+    box-shadow: none;
+    background: none;
+    font-size: 11pt;
+  }
+
+  .lt-hero__title {
     max-width: none;
+    margin-top: 2mm;
+    font-size: 22pt;
   }
 
-  .fo-hero__name {
-    font-size: 26pt;
-    line-height: 1.05;
-    margin: 1mm 0 2mm;
+  .lt-hero__title em {
+    color: #000;
+    background: none;
   }
 
-  /* One line on paper. The space before it survives the hidden break. */
-  .fo-hero__name br {
-    display: none;
-  }
-
-  .fo-hero__role {
-    --fo-mono-fs: 8pt;
-    --fo-mono-ls: 0.16em;
-    margin-bottom: 2.5mm;
-    color: #333;
-  }
-
-  .fo-hero__lede {
-    font-size: 10.5pt;
-    line-height: 1.4;
-    max-width: none;
+  .lt-hero__lead {
+    margin-top: 2mm;
+    font-size: 10pt;
     color: #222;
   }
 
-  /* ---- Contact strip ----------------------------------------------- */
-  .fo-correspondence {
-    padding: 3mm 0;
-    margin-bottom: 4mm;
-    text-align: left;
-    background: none;
-    border-bottom: 0.4pt solid #999;
+  .lt-section {
+    padding: 4mm 0;
   }
 
-  .fo-correspondence .fo-eyebrow,
-  .fo-correspondence .fo-title,
-  .fo-correspondence__note {
-    display: none;
+  .lt-section__head {
+    display: block;
+    margin-bottom: 3mm;
   }
 
-  .fo-correspondence__actions {
-    justify-content: flex-start;
-    gap: 1mm 6mm;
-    margin: 0;
-  }
-
-  .fo-correspondence__actions a {
-    --fo-mono-fs: 8.5pt;
-    --fo-mono-ls: 0.02em;
-    padding: 0;
-    border: none;
-    color: #000;
-    text-transform: none;
-  }
-
-  /* A printed link is worthless without its address. */
-  .fo-correspondence__actions a[href^='http']::after {
-    content: ' ' attr(href);
-    color: #555;
-  }
-
-  .fo-correspondence__terms {
-    --fo-mono-fs: 8pt;
-    margin-top: 1.5mm;
-    color: #444;
-  }
-
-  /* ---- Section headings -------------------------------------------- */
-  .fo-section {
-    padding: 0;
-    margin: 0 0 5mm;
-  }
-
-  .fo-section--band {
-    margin-top: 0;
-    background: none;
-    border: none;
-  }
-
-  .fo-section__head {
-    margin: 0 0 3mm;
-    text-align: left;
-  }
-
-  .fo-eyebrow {
-    --fo-mono-fs: 7.5pt;
-    --fo-mono-ls: 0.16em;
-    color: #666;
-  }
-
-  .fo-title {
-    font-size: 15pt;
-    margin: 0.5mm 0 0;
-    padding-bottom: 1mm;
-    border-bottom: 0.4pt solid #999;
-  }
-
-  /* A heading at the foot of a page is a heading in the wrong place. */
-  .fo-section__head,
-  .fo-title,
-  .fo-catalogue__head {
+  .lt-h2,
+  .lt-contact__title {
+    font-size: 14pt;
     break-after: avoid;
   }
 
-  /* ---- Register of service ----------------------------------------- */
-  .fo-register {
+  .lt-scrub {
+    font-size: 10pt;
+  }
+
+  .lt-bento {
     display: block;
   }
 
-  .fo-register__entry {
-    margin-bottom: 3.5mm;
-    break-inside: avoid;
-  }
-
-  .fo-register__head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 4mm;
-  }
-
-  .fo-register__role {
-    font-size: 10.5pt;
-    font-weight: 700;
-  }
-
-  .fo-register__dates {
-    --fo-mono-fs: 8pt;
-    flex: none;
-    color: #444;
-  }
-
-  .fo-register__summary {
-    margin: 0.8mm 0;
-    color: #222;
-  }
-
-  .fo-register__stack {
-    --fo-mono-fs: 8pt;
-    --fo-mono-ls: 0.02em;
-    color: #555;
-    text-transform: none;
-  }
-
-  /* ---- Selected work ----------------------------------------------- */
-  .fo-plates {
+  .lt-card {
     display: block;
-  }
-
-  .fo-plate {
-    display: block;
-    padding: 2mm 0 0;
-    margin-bottom: 3.5mm;
-    background: none;
-    border: none;
-    border-top: 0.4pt solid #bbb;
-    border-radius: 0;
+    margin-bottom: 3mm;
+    padding: 0 0 0 1mm;
+    overflow: visible;
     box-shadow: none;
     break-inside: avoid;
   }
 
-  .fo-plate__body {
-    padding: 0;
+  .lt-card__figureValue,
+  .lt-card__figureLabel {
+    display: inline;
+    margin: 0 2mm 0 0;
   }
 
-  .fo-plate__title {
-    font-size: 11pt;
-    margin: 0 0 1mm;
-  }
-
-  .fo-plate__body .fo-prose {
-    max-width: none;
-    margin: 0 0 1mm;
-    font-size: 9pt;
-    color: #222;
-  }
-
-  .fo-plate__metrics {
-    --fo-mono-fs: 7.5pt;
-    margin: 0 0 1mm;
-    color: #555;
-  }
-
-  .fo-plate__source {
-    --fo-mono-fs: 8pt;
-    --fo-mono-ls: 0.02em;
+  .lt-card__title {
     margin-top: 1mm;
-    color: #555;
-    text-decoration: none;
-    text-transform: none;
+    font-size: 11pt;
   }
 
-  .fo-plate__source::after {
-    content: ' ' attr(href);
+  .lt-card__text {
+    margin-top: 0.5mm;
+    font-size: 9.5pt;
   }
 
-  /* ---- Tags become a plain run of names ---------------------------- */
-  .fo-tags {
-    gap: 0 3mm;
+  .lt-card__foot {
+    padding-top: 1mm;
   }
 
-  .fo-tag {
-    --fo-mono-fs: 8pt;
-    padding: 0;
-    background: none;
-    border: none;
-    color: #444;
-  }
-
-  /* ---- Specimen catalogue ------------------------------------------ */
-  .fo-catalogue {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3mm 7mm;
-  }
-
-  .fo-catalogue > * {
-    break-inside: avoid;
-  }
-
-  .fo-catalogue__head {
+  .lt-group {
+    margin: 2mm 0;
     padding-bottom: 1mm;
-    border-bottom: 0.4pt solid #666;
   }
 
-  .fo-catalogue__title {
-    --fo-mono-fs: 8pt;
+  .lt-group__title {
+    font-size: 10.5pt;
   }
 
-  .fo-catalogue__count {
+  .lt-skills {
+    gap: 2mm;
+  }
+
+  .lt-skills__title {
+    margin-bottom: 1mm;
+  }
+
+  .lt-services .lt-btn {
     display: none;
   }
 
-  .fo-leader {
-    padding: 0.7mm 0;
-    border-bottom: none;
+  .lt-services__lead,
+  .lt-about__text {
+    margin-top: 1mm;
+    font-size: 9.5pt;
   }
 
-  .fo-leader__num {
+  .lt-card__body {
+    padding: 0 !important;
+  }
+
+  .lt-card__figureValue {
+    font-size: 10.5pt;
+  }
+
+  .lt-portrait {
+    position: static;
+    float: right;
+    width: 32mm;
+    margin: 0 0 3mm 5mm;
+  }
+
+  .lt-portrait__frame {
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .lt-portrait__caption {
     display: none;
   }
 
-  .fo-leader__name {
-    font-size: 8.5pt;
+  .lt-about {
+    display: block;
   }
 
-  .fo-leader__dots {
-    border-bottom-color: #ccc;
+  .lt-timeline__item {
+    padding: 1.5mm 0;
   }
 
-  .fo-leader__meta {
-    --fo-mono-fs: 8pt;
+  .lt-services {
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .lt-chips li {
+    padding: 0;
+    box-shadow: none;
+    background: none;
+  }
+
+  .lt-chips li + li::before {
+    content: '· ';
+  }
+
+  .lt-contact {
+    padding: 4mm 0 0;
+    background: #fff;
+    color: #000;
+  }
+
+  .lt-contact__address {
+    color: #000;
+    font-size: 12pt;
+  }
+
+  .lt-contact .lt-btn--ghost {
+    min-height: 0;
+    padding: 0;
+    color: #000;
+    box-shadow: none;
+  }
+
+  /* A printed link is worthless without its address. */
+  .lt-contact__links a[href^='http']::after {
+    content: ' ' attr(href);
     color: #555;
   }
 
-  /* ---- Colophon ---------------------------------------------------- */
-  .fo-colophon {
-    --fo-mono-fs: 7pt;
-    padding: 2mm 0 0;
-    background: none;
-    color: #666;
-    border-top: 0.4pt solid #ccc;
+  .lt-contact__terms {
+    color: #444;
   }
 }
