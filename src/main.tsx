@@ -1,10 +1,10 @@
 import { StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 
-// Order matters: the design system establishes the vocabulary, the folio speaks it.
-import './styles/pangolin/tokens.css';
-import './styles/pangolin/base.css';
-import './styles/folio.css';
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import './styles/site.css';
 import './styles/print.css';
 
 import { App } from './App';
