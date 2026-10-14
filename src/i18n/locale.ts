@@ -2,7 +2,7 @@ export const LOCALES = ['en', 'pl'] as const;
 
 export type Locale = (typeof LOCALES)[number];
 
-/** A value the folio carries in every language it is set in. */
+/** A value carried in every language the site is in. */
 export type Localized<T> = Readonly<Record<Locale, T>>;
 
 /** Shown on the language switch. */

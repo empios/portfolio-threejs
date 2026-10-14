@@ -10,7 +10,7 @@ import './styles/print.css';
 import { App } from './App';
 
 const container = document.getElementById('root');
-if (!container) throw new Error('The folio found no #root to bind to.');
+if (!container) throw new Error('No #root element to render into.');
 
 hydrateRoot(
   container,

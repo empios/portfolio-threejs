@@ -109,7 +109,7 @@ export function LocaleProvider({
 
 function useLocaleContext(): LocaleContextValue {
   const context = useContext(LocaleContext);
-  if (!context) throw new Error('The folio must be read inside a LocaleProvider.');
+  if (!context) throw new Error('useLocale/useT must be used inside a LocaleProvider.');
   return context;
 }
 

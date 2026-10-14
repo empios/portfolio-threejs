@@ -16,6 +16,7 @@ npm run dev
 | `build`     | typecheck, client build, SSR build, prerender `/` `/en` |
 | `preview`   | Serve `dist/`                                           |
 | `typecheck` | Types only                                              |
+| `og`        | Re-render `public/og.png` from `scripts/og.html`        |
 
 `.github/workflows/deploy.yml` builds and deploys to GitHub Pages on every push
 to `main`.
@@ -60,7 +61,7 @@ the cloud, figures and navigation drop out, links print with their addresses.
 
 ## Two languages
 
-The folio is set in Polish and English. There is no i18n dependency — the
+The site is in Polish and English. There is no i18n dependency — the
 seam is a type:
 
 ```ts
@@ -79,7 +80,7 @@ stack: ['Python', 'FastAPI', 'CTranslate2'],
 ```
 
 Components read through one hook, `const t = useT()`, then `t(plate.title)`.
-Interface copy lives in `content/ui.ts`; content proper stays in its own module.
+Visible copy lives in `site/copy.ts`; data stays in `content/`.
 
 **Polish takes three plural forms** where English takes two, so counts go
 through `pluralize()` — *1 zapis odnaleziony*, *2 zapisy odnalezione*,

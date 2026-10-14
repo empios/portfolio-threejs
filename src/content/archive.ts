@@ -297,8 +297,8 @@ export const RECORDS: readonly ArchiveRecord[] = [
       pl: 'Rejestr publiczny · github/empios/Pangolin',
     },
     text: {
-      en: 'The house design system: warm paper, aubergine ink and a sealing-wax accent — tokens, base styles, components and a tweaks panel. This very folio is set in it.',
-      pl: 'Domowy system projektowy: ciepły papier, bakłażanowy atrament i akcent w kolorze laku — tokeny, style bazowe, komponenty i panel regulacji. W nim właśnie złożono ten zbiór.',
+      en: 'My design system: warm paper, aubergine ink and an orange accent. Tokens, base styles, components and a live tweaks panel.',
+      pl: 'Mój system projektowy: ciepły papier, bakłażanowy atrament i pomarańczowy akcent. Tokeny, style bazowe, komponenty i panel regulacji na żywo.',
     },
     tags: [
       'pangolin', 'design', 'system', 'tokens', 'css', 'components', 'ui', 'tweaks',
