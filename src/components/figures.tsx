@@ -2,7 +2,7 @@ import type { FigureId } from '../content/plates';
 
 /**
  * The engraved figures. All colour, weight and type live in `.fo-fig` in
- * folio.css, so these stay what they are — geometry and a description.
+ * site.css, so these stay what they are — geometry and a description.
  */
 
 interface FigureProps {
@@ -18,7 +18,7 @@ function Figure({ label, children }: FigureProps & { readonly children: React.Re
   );
 }
 
-/** A grid of nine dots — the folio's mark for an index. */
+/** A grid of nine dots, the mark for an index. */
 function DotGrid({ x, y, step = 9 }: { readonly x: number; readonly y: number; readonly step?: number }) {
   return (
     <>
