@@ -1,20 +1,18 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { CONTACT_EMAIL, GITHUB_URL, LINKEDIN_URL } from '../src/config/contact';
 import { SUGGESTIONS } from '../src/content/archive';
-import { CHAPTERS } from '../src/content/career';
 import { INSTRUMENT_CASES } from '../src/content/instruments';
 import { PLATES, type Plate } from '../src/content/plates';
 import { IDENTITY, PORTRAIT } from './portrait';
 import { FIGURES } from '../src/components/figures';
 import { LOCALE_NAMES, LOCALES, type Locale, type Localized } from '../src/i18n/locale';
 import { searchArchive } from '../src/lib/searchArchive';
-import { CLUSTER_LABELS, COPY, HEADLINE } from './copy';
+import { CLUSTER_LABELS, COPY, PROJECTS, TIMELINE } from './copy';
 import { mountCloud, type CloudHandle } from './cloud';
 
 type T = <V>(value: Localized<V>) => V;
 
 const SECTIONS = ['work', 'about', 'services', 'skills'] as const;
-const VIRIDIS_OFFERS = ['#3b528b', '#21918c', '#5ec962'];
 
 // ---------------------------------------------------------------------------
 // Behaviour
@@ -280,6 +278,8 @@ function Hero({ t, locale }: { readonly t: T; readonly locale: Locale }) {
       <div className="lt-wrap lt-hero__inner">
         <p className="lt-status lt-enter" style={{ '--i': 0 } as CSSProperties}>
           <span className="lt-status__dot" aria-hidden="true" />
+          <strong>{IDENTITY.name}</strong>
+          <span aria-hidden="true">·</span>
           {t(COPY.hero.status)}
         </p>
         <h1 className="lt-hero__title lt-enter" style={{ '--i': 1 } as CSSProperties}>
@@ -288,7 +288,7 @@ function Hero({ t, locale }: { readonly t: T; readonly locale: Locale }) {
           {t(COPY.hero.titleAfter)}
         </h1>
         <p className="lt-hero__lead lt-enter" style={{ '--i': 2 } as CSSProperties}>
-          <strong>{IDENTITY.name}</strong> — {t(COPY.hero.lead)}
+          {t(COPY.hero.lead)}
         </p>
         <div className="lt-hero__actions lt-enter" style={{ '--i': 3 } as CSSProperties}>
           <a className="lt-btn lt-btn--primary" href="#work">
@@ -320,7 +320,8 @@ function ProjectCard({ plate, t, locale, wide, delay }: {
   readonly delay: number;
 }) {
   const Figure = FIGURES[plate.figure];
-  const headline = HEADLINE[plate.figure];
+  const copy = PROJECTS[plate.figure];
+  const headline = copy.stat;
 
   const onMove = useCallback((event: React.PointerEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -348,8 +349,8 @@ function ProjectCard({ plate, t, locale, wide, delay }: {
             <p className="lt-card__figureLabel">{t(headline.label)}</p>
           </>
         )}
-        <h3 className="lt-card__title">{t(plate.title)}</h3>
-        <p className="lt-card__text">{t(plate.summary)}</p>
+        <h3 className="lt-card__title">{t(copy.title)}</h3>
+        <p className="lt-card__text">{t(copy.text)}</p>
         <div className="lt-card__foot">
           <ul className="lt-stack" aria-label="Stack">
             {plate.stack.map((item) => (
@@ -378,7 +379,6 @@ function Work({ t, locale }: { readonly t: T; readonly locale: Locale }) {
       <div className="lt-wrap">
         <div className="lt-section__head">
           <div data-reveal="">
-            <p className="lt-kicker">{t(COPY.work.kicker)}</p>
             <h2 id="work-title" className="lt-h2">
               {t(COPY.work.title)}
             </h2>
@@ -388,9 +388,6 @@ function Work({ t, locale }: { readonly t: T; readonly locale: Locale }) {
 
         <div className="lt-group" data-reveal="">
           <h3 className="lt-group__title">{t(COPY.work.client)}</h3>
-          <span className="lt-mono lt-group__count">
-            {client.length} {t(COPY.work.projects)}
-          </span>
         </div>
         <div className="lt-bento">
           {client.map((plate, i) => (
@@ -400,9 +397,6 @@ function Work({ t, locale }: { readonly t: T; readonly locale: Locale }) {
 
         <div className="lt-group" data-reveal="" style={{ marginTop: 72 }}>
           <h3 className="lt-group__title">{t(COPY.work.workshop)}</h3>
-          <span className="lt-mono lt-group__count">
-            {workshop.length} {t(COPY.work.projects)}
-          </span>
         </div>
         <div className="lt-bento lt-bento--workshop">
           {workshop.map((plate, i) => (
@@ -415,8 +409,6 @@ function Work({ t, locale }: { readonly t: T; readonly locale: Locale }) {
 }
 
 function About({ t }: { readonly t: T }) {
-  const chapters = [...CHAPTERS].reverse();
-
   return (
     <section id="about" className="lt-section" aria-labelledby="about-title">
       <div className="lt-wrap lt-about">
@@ -439,26 +431,22 @@ function About({ t }: { readonly t: T }) {
 
         <div>
           <div data-reveal="">
-            <p className="lt-kicker">{t(COPY.about.kicker)}</p>
             <h2 id="about-title" className="lt-h2">
               {t(COPY.about.title)}
             </h2>
             <p className="lt-about__text">{t(COPY.about.text)}</p>
           </div>
           <ol className="lt-timeline">
-            {chapters.map((chapter, i) => (
+            {TIMELINE.map((entry, i) => (
               <li
-                key={chapter.num}
+                key={entry.role.en}
                 className="lt-timeline__item"
-                data-now={i === 0 ? '' : undefined}
+                data-now={entry.now ? '' : undefined}
                 data-reveal=""
                 style={{ '--d': `${i * 50}ms` } as CSSProperties}
               >
-                <span className="lt-timeline__dates lt-mono">{t(chapter.dates)}</span>
-                <div>
-                  <p className="lt-timeline__role">{t(chapter.title)}</p>
-                  <p className="lt-timeline__summary">{t(chapter.summary)}</p>
-                </div>
+                <span className="lt-timeline__dates lt-mono">{t(entry.dates)}</span>
+                <p className="lt-timeline__role">{t(entry.role)}</p>
               </li>
             ))}
           </ol>
@@ -475,7 +463,6 @@ function Services({ t }: { readonly t: T }) {
         <div className="lt-services" data-reveal="">
           <div className="lt-services__top">
             <div>
-              <p className="lt-kicker">{t(COPY.services.kicker)}</p>
               <h2 id="services-title" className="lt-h2">
                 {t(COPY.services.title)}
               </h2>
@@ -485,15 +472,6 @@ function Services({ t }: { readonly t: T }) {
               {t(COPY.services.cta)} <span className="lt-btn__arrow" aria-hidden="true">↗</span>
             </a>
           </div>
-          <ul className="lt-offers">
-            {COPY.services.offers.map((offer, i) => (
-              <li key={offer.title.en} className="lt-offer">
-                <span className="lt-offer__swatch" style={{ background: VIRIDIS_OFFERS[i] }} aria-hidden="true" />
-                <p className="lt-offer__title">{t(offer.title)}</p>
-                <p className="lt-offer__text">{t(offer.text)}</p>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>
@@ -506,7 +484,6 @@ function Skills({ t }: { readonly t: T }) {
       <div className="lt-wrap">
         <div className="lt-section__head" data-reveal="">
           <div>
-            <p className="lt-kicker">{t(COPY.skills.kicker)}</p>
             <h2 id="skills-title" className="lt-h2">
               {t(COPY.skills.title)}
             </h2>
@@ -515,16 +492,10 @@ function Skills({ t }: { readonly t: T }) {
         <div className="lt-skills">
           {INSTRUMENT_CASES.map((group, i) => (
             <div key={group.title.en} data-reveal="" style={{ '--d': `${i * 80}ms` } as CSSProperties}>
-              <div className="lt-group">
-                <h3 className="lt-group__title">{t(group.title)}</h3>
-                <span className="lt-mono lt-group__count">{group.specimens.length}</span>
-              </div>
-              <ul className="lt-skills__list">
+              <h3 className="lt-group__title lt-skills__title">{t(COPY.skills.groups[i] ?? group.title)}</h3>
+              <ul className="lt-chips">
                 {group.specimens.map((skill) => (
-                  <li key={skill.name} className="lt-skill">
-                    <p className="lt-skill__name">{skill.name}</p>
-                    <p className="lt-skill__note">{t(skill.note)}</p>
-                  </li>
+                  <li key={skill.name}>{skill.name}</li>
                 ))}
               </ul>
             </div>
@@ -552,7 +523,6 @@ function Contact({ t }: { readonly t: T }) {
     <section id="contact" className="lt-contact" aria-labelledby="contact-title">
       <div className="lt-wrap">
         <div data-reveal="">
-          <p className="lt-kicker">{t(COPY.contact.kicker)}</p>
           <h2 id="contact-title" className="lt-contact__title">
             {t(COPY.contact.title)}
           </h2>
@@ -646,8 +616,8 @@ function Ask({ t, locale, open, onClose }: {
         ) : (
           hits.map(({ record }) => (
             <article key={record.title.en} className="lt-hit">
-              <p className="lt-hit__title">{t(record.title)}</p>
-              <p className="lt-hit__text">{t(record.text)}</p>
+              <p className="lt-hit__title">{t(record.title).replace(/ — /g, ': ')}</p>
+              <p className="lt-hit__text">{t(record.text).split('. ')[0]?.replace(/ — /g, ', ').replace(/\.$/, '')}.</p>
             </article>
           ))
         )}

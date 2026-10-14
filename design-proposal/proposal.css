@@ -420,6 +420,11 @@ p {
   text-align: right;
 }
 
+.lt-status strong {
+  color: var(--lt-ink);
+  font-weight: 500;
+}
+
 .lt-status {
   display: inline-flex;
   align-items: center;
@@ -1009,8 +1014,9 @@ p {
 .lt-timeline__item {
   display: grid;
   grid-template-columns: 128px minmax(0, 1fr);
-  gap: 8px 24px;
-  padding: 22px 0;
+  align-items: baseline;
+  gap: 4px 24px;
+  padding: 18px 0;
   border-bottom: 1px solid var(--lt-line);
 }
 
@@ -1143,6 +1149,29 @@ p {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 40px clamp(24px, 4vw, 56px);
+}
+
+.lt-skills__title {
+  margin-bottom: 18px;
+}
+
+.lt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lt-chips li {
+  padding: 9px 14px;
+  border-radius: var(--lt-r-pill);
+  background: var(--lt-surface);
+  box-shadow: var(--lt-shadow-1);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 .lt-skills__list {
