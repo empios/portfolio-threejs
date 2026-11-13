@@ -10,6 +10,7 @@ import { useLocale, useT } from '../i18n/LocaleProvider';
 import { searchArchive } from '../lib/searchArchive';
 import { CLUSTER_LABELS, COPY, PROJECTS, TIMELINE } from './copy';
 import { mountCloud, type CloudHandle } from './cloud';
+import { Logo } from './Logo';
 
 type T = <V>(value: Localized<V>) => V;
 
@@ -196,7 +197,7 @@ function Nav({
   return (
     <nav className="lt-nav" data-hidden={hidden ? '' : undefined} aria-label="Primary">
       <a className="lt-nav__brand" href="#top" aria-label={IDENTITY.name}>
-        {IDENTITY.monogram}
+        <Logo />
       </a>
       <div className="lt-nav__links" ref={linksRef}>
         <span className="lt-nav__chip" style={chip} aria-hidden="true" />

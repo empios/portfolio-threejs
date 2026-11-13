@@ -207,11 +207,11 @@ p {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--lt-ink);
-  color: #fff;
-  font: 600 13px/1 var(--lt-display);
-  letter-spacing: 0.02em;
   text-decoration: none;
+}
+
+.lt-nav__brand svg {
+  display: block;
 }
 
 .lt-nav__links {
