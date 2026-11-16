@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo — runda 2</title>
+<style>
+  @font-face { font-family: 'Bricolage'; src: url(fonts/bricolage-grotesque-latin-standard-normal.woff2) format('woff2'); font-weight: 200 800; font-stretch: 75% 100%; unicode-range: U+0000-00FF; }
+  @font-face { font-family: 'Bricolage'; src: url(fonts/bricolage-grotesque-latin-ext-standard-normal.woff2) format('woff2'); font-weight: 200 800; font-stretch: 75% 100%; unicode-range: U+0100-024F; }
+  :root { --ink: #0B0D12; --g: linear-gradient(90deg, #6A4FD6, #1FA187 55%, #A0DA39); }
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; background: #EEF0F4; color: #333; padding: 40px; }
+  h1 { font-size: 22px; margin-bottom: 28px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .card { background: #fff; border-radius: 18px; overflow: hidden; border: 1px solid #dde0e6; }
+  .stage { height: 250px; display: flex; align-items: center; justify-content: center; gap: 40px; }
+  .stage.dark { background: var(--ink); }
+  .label { padding: 12px 18px; font-size: 14px; border-top: 1px solid #e6e8ec; display: flex; justify-content: space-between; }
+  .label span { opacity: .55; }
+  .wm { font-family: 'Bricolage'; font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--ink); white-space: nowrap; }
+  .dark .wm { color: #fff; }
+  /* ł whose stroke is the gradient cursor */
+  .l { position: relative; display: inline-block; margin: 0 .035em; }
+  .l::after { content: ''; position: absolute; left: 50%; top: 48%; width: .5em; height: .12em; border-radius: .06em; background: var(--g); transform: translate(-50%, -50%) rotate(-28deg); }
+  .cur { display: inline-block; width: .46em; height: .11em; border-radius: .055em; background: var(--g); margin-left: .06em; vertical-align: baseline; }
+  .nav { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 99px; padding: 6px 16px 6px 6px; box-shadow: 0 0 0 1px rgba(11,13,18,.08), 0 8px 24px -12px rgba(11,13,18,.3); }
+  .nav span { font: 500 14px system-ui; color: #4b5263; }
+  .sizes { display: flex; gap: 14px; align-items: end; }
+</style>
+</head>
+<body>
+<h1>Logo — runda 2 (font Bricolage jak nagłówki strony)</h1>
+<div class="grid">
+
+  <!-- A: wordmark, ł stroke = gradient cursor -->
+  <div class="card">
+    <div class="stage"><div class="wm" style="font-size:72px">w<i style="font-style:normal" class="l">l</i>odarczyk</div></div>
+    <div class="label">A · kreska „ł” jako kolorowy kursor <span>napis</span></div>
+  </div>
+
+  <!-- B: wordmark ending with gradient underscore cursor -->
+  <div class="card">
+    <div class="stage"><div class="wm" style="font-size:72px">włodarczyk<span class="cur"></span></div></div>
+    <div class="label">B · nazwisko + migający kursor <span>napis</span></div>
+  </div>
+
+  <!-- C: monogram ł-mark for favicon + wordmark A -->
+  <div class="card">
+    <div class="stage">
+      <svg width="120" height="120" viewBox="0 0 512 512">
+        <defs><linearGradient id="gc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6A4FD6"/><stop offset=".55" stop-color="#1FA187"/><stop offset="1" stop-color="#A0DA39"/></linearGradient></defs>
+        <rect width="512" height="512" rx="120" fill="#0B0D12"/>
+        <rect x="222" y="96" width="68" height="320" rx="34" fill="#fff"/>
+        <rect x="146" y="226" width="220" height="60" rx="30" fill="url(#gc)" transform="rotate(-28 256 256)"/>
+      </svg>
+      <div class="sizes">
+        <svg width="32" height="32" viewBox="0 0 512 512"><rect width="512" height="512" rx="120" fill="#0B0D12"/><rect x="222" y="96" width="68" height="320" rx="34" fill="#fff"/><rect x="146" y="226" width="220" height="60" rx="30" fill="url(#gc)" transform="rotate(-28 256 256)"/></svg>
+        <svg width="16" height="16" viewBox="0 0 512 512"><rect width="512" height="512" rx="120" fill="#0B0D12"/><rect x="222" y="96" width="68" height="320" rx="34" fill="#fff"/><rect x="146" y="226" width="220" height="60" rx="30" fill="url(#gc)" transform="rotate(-28 256 256)"/></svg>
+      </div>
+    </div>
+    <div class="label">C · znak „ł” na favicon (pasuje do A) <span>znak 120 / 32 / 16 px</span></div>
+  </div>
+
+  <!-- D: in context: nav + dark -->
+  <div class="card">
+    <div class="stage" style="flex-direction:column;gap:22px">
+      <div class="nav"><svg width="36" height="36" viewBox="0 0 512 512"><rect width="512" height="512" rx="256" fill="#0B0D12"/><rect x="222" y="96" width="68" height="320" rx="34" fill="#fff"/><rect x="146" y="226" width="220" height="60" rx="30" fill="url(#gc)" transform="rotate(-28 256 256)"/></svg><div class="wm" style="font-size:22px">w<i style="font-style:normal" class="l">l</i>odarczyk</div><span>&nbsp;· Work · About · Contact</span></div>
+      <div style="background:#0B0D12;border-radius:14px;padding:18px 26px"><div class="wm" style="font-size:40px;color:#fff">w<i style="font-style:normal" class="l">l</i>odarczyk</div></div>
+    </div>
+    <div class="label">D · A + C w menu strony i na ciemnym tle <span>podgląd</span></div>
+  </div>
+
+</div>
+</body>
+</html>
