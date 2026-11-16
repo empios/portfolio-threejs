@@ -202,16 +202,44 @@ p {
 }
 
 .lt-nav__brand {
-  display: grid;
-  place-items: center;
-  width: 36px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   height: 36px;
-  border-radius: 50%;
-  background: var(--lt-ink);
-  color: #fff;
-  font: 600 13px/1 var(--lt-display);
-  letter-spacing: 0.02em;
+  padding-right: 8px;
+  border-radius: var(--lt-r-pill);
+  color: var(--lt-ink);
   text-decoration: none;
+}
+
+.lt-nav__brand svg {
+  display: block;
+  flex: none;
+}
+
+/* Surname with the "ł" stroke drawn as the gradient cursor from the mark. */
+.lt-wordmark {
+  font: 700 19px/1 var(--lt-display);
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.lt-wordmark__l {
+  position: relative;
+  display: inline-block;
+  margin: 0 0.07em;
+}
+
+.lt-wordmark__l::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 0.44em;
+  height: 0.12em;
+  border-radius: 0.06em;
+  background: linear-gradient(90deg, #6a4fd6, #1fa187 55%, #a0da39);
+  transform: translate(-50%, -50%) rotate(-28deg);
 }
 
 .lt-nav__links {
@@ -313,7 +341,8 @@ p {
 
 @media (max-width: 900px) {
   .lt-nav__links,
-  .lt-nav__askLabel {
+  .lt-nav__askLabel,
+  .lt-wordmark {
     display: none;
   }
 }
